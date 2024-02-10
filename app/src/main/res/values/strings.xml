@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Ration</string>
+    <string name="add_animal">Ajouter un animal</string>
+    <string name="add_component">Ajouter un aliment</string>
+    <string name="add_ration">Ajouter une Ration</string>
+    <string name="animal_icon_description">description de l\'animal</string>
+</resources>
