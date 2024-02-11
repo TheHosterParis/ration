@@ -1,18 +1,16 @@
 package com.example.ration.data.dao
 
-import androidx.room.ColumnInfo
 import androidx.room.Dao
 import androidx.room.Delete
-import androidx.room.Embedded
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
-import com.example.ration.data.model.Component
 import com.example.ration.data.model.Ration
-import com.example.ration.data.model.RationComponentCrossRef
+import com.example.ration.data.model.RationAlimentCrossRef
+import com.example.ration.data.model.RationComplete
 import com.example.ration.data.model.RationDetail
-import com.example.ration.data.model.RationWithComponents
+import com.example.ration.data.model.RationWithAliments
 
 @Dao
 interface RationDao {
@@ -24,7 +22,7 @@ interface RationDao {
     suspend fun insertAll(ration: List<Ration>): List<Long>
 
     @Insert
-    suspend fun insertRationAlimentCrossRef(crossRef: RationComponentCrossRef)
+    suspend fun insertRationAlimentCrossRef(crossRef: RationAlimentCrossRef)
 
     @Update
     suspend fun update(ration: Ration)
@@ -40,10 +38,34 @@ interface RationDao {
 
     @Transaction
     @Query("SELECT * FROM rations WHERE idRation = :rationId")
-    suspend fun getRationWithAliments(rationId: Long): List<RationWithComponents>
+    suspend fun getRationWithAliments(rationId: Long): List<RationWithAliments>
 
     @Transaction
-    @Query("SELECT rations.*, components.*, ration_component_cross_ref.quantity FROM rations JOIN ration_component_cross_ref ON rations.idRation = ration_component_cross_ref.idRation JOIN components ON components.idComponent = ration_component_cross_ref.idComponent WHERE rations.idRation = :rationId")
-    fun getRationWithComponents(rationId: Long): List<RationDetail>
+    @Query("SELECT rations.*, aliments.*, ration_aliment_cross_ref.quantity FROM rations JOIN ration_aliment_cross_ref ON rations.idRation = ration_aliment_cross_ref.idRation JOIN aliments ON aliments.idAliment = ration_aliment_cross_ref.idAliment WHERE rations.idRation = :rationId")
+    fun getRationDetailWithAliments(rationId: Long): List<RationDetail>
     // Ajoutez d'autres méthodes de requête selon les besoins
+
+    @Transaction
+    @Query("""
+        SELECT 
+            r.idRation,
+            r.rationName,
+            r.date,
+            a.id AS animalId,
+            a.name AS animalName,
+            al.idAliment,
+            al.alimentName,
+            rac.quantity,
+            rac.unit,
+            rac.pas
+        FROM 
+            rations r
+        INNER JOIN 
+            animals a ON r.animalId = a.id
+        INNER JOIN 
+            ration_aliment_cross_ref rac ON r.idRation = rac.idRation
+        INNER JOIN 
+            aliments al ON rac.idAliment = al.idAliment
+    """)
+    suspend fun getAllRationDetails(): List<RationComplete>
 }

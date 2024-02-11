@@ -1,10 +1,8 @@
 package com.example.ration.data.model
 
 import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.ForeignKey
 import androidx.room.Index
-import java.util.Date
+import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "rations",
@@ -15,4 +13,5 @@ data class Ration(
     var date: Long,
     var animalId: Long,
     var numberOfAnimals: Int,
+    var information: String?
 )

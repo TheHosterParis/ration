@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.example.ration.ui.animal.AnimalListActivity
-import com.example.ration.ui.component.ComponentListActivity
+import com.example.ration.ui.aliment.AlimentListActivity
 import com.example.ration.ui.ration.RationHistoryActivity
 
 class MainActivity : AppCompatActivity() {
@@ -19,9 +19,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Configure le bouton pour la liste des composants
-        findViewById<Button>(R.id.btnComponentList).setOnClickListener {
-            val intent = Intent(this, ComponentListActivity::class.java)
+        // Configure le bouton pour la liste des Aliments
+        findViewById<Button>(R.id.btnAlimentList).setOnClickListener {
+            val intent = Intent(this, AlimentListActivity::class.java)
             startActivity(intent)
         }
 

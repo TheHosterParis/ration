@@ -34,7 +34,7 @@ class RationHistoryActivity : AppCompatActivity() {
         rationsRecyclerView.adapter = adapter
 
         loadRations()
-
+        loadRationComplete()
         findViewById<FloatingActionButton>(R.id.addRationFAB).setOnClickListener {
             // Ici, vous pouvez démarrer RationDetailActivity pour ajouter un nouvel ration
         }
@@ -49,10 +49,25 @@ class RationHistoryActivity : AppCompatActivity() {
             // Log the retrieved rations
             Log.d("RationListActivity", "Loaded rations: ${rations.size}")
             rations.forEach { ration ->
-                Log.d("RationListActivity", "Ration: ${ration.rationName}") // Assurez-vous que la classe Ration a un attribut name ou modifiez cette ligne pour afficher l'information pertinente
+                Log.d("RationListActivity", "Ration: $ration") // Assurez-vous que la classe Ration a un attribut name ou modifiez cette ligne pour afficher l'information pertinente
             }
 
             adapter.updateRations(rations)
+        }
+    }
+    private fun loadRationComplete() {
+        CoroutineScope(Dispatchers.Main).launch {
+            val rations = withContext(Dispatchers.IO) {
+                rationDao.getAllRationDetails()
+            }
+
+            // Log the retrieved rations
+            Log.d("getAllRationDetails", "Loaded rations: ${rations.size}")
+            rations.forEach { ration ->
+                Log.d("getAllRationDetails", "Ration: $ration") // Assurez-vous que la classe Ration a un attribut name ou modifiez cette ligne pour afficher l'information pertinente
+            }
+
+            //adapter.updateRations(rations)
         }
     }
 }

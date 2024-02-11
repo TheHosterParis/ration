@@ -28,8 +28,8 @@
         <!-- List and Detail Activities -->
         <activity android:name=".ui.animal.AnimalListActivity" />
         <activity android:name=".ui.animal.AnimalDetailActivity" />
-        <activity android:name=".ui.component.ComponentListActivity" />
-        <activity android:name=".ui.component.ComponentDetailActivity" />
+        <activity android:name=".ui.aliment.AlimentListActivity" />
+        <activity android:name=".ui.aliment.AlimentDetailActivity" />
         <activity android:name=".ui.ration.RationHistoryActivity" />
         <activity android:name=".ui.ration.RationDetailActivity" />
         <activity android:name=".ui.ration.RationFormActivity" />

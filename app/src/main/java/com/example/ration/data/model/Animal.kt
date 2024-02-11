@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 data class Animal(
     @PrimaryKey(autoGenerate = true) var id: Long = 0,
     var name: String,
-    var category: String,
+    var animalId: Long,
     var imageUrl: String,
     var description: String
 )

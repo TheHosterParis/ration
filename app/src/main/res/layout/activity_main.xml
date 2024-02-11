@@ -11,20 +11,20 @@
         android:id="@+id/btnAnimalList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Liste des Animaux" />
+        android:text="@string/liste_des_animaux" />
 
     <Button
-        android:id="@+id/btnComponentList"
+        android:id="@+id/btnAlimentList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Liste des Composants"
+        android:text="@string/liste_des_aliments"
         android:layout_marginTop="16dp"/>
 
     <Button
         android:id="@+id/btnRationHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Historique des Rations"
+        android:text="@string/historique_des_rations"
         android:layout_marginTop="16dp"/>
 
 </LinearLayout>

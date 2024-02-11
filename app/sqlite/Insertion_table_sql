@@ -1,0 +1,35 @@
+-- Insertion dans la table Animaux
+INSERT INTO Animaux (nomAnimal, typeAnimal) VALUES 
+('vacheLait', 'bovin'),
+('vacheLaitTarie', 'bovin'),
+('vacheLaitGenisse', 'bovin'),
+('vacheViande', 'bovin'),
+('chevre', 'ovin'),
+('cochon', 'Porcin');
+
+-- Insertion dans la table Ration
+-- Notez que la date est insérée comme un entier long représentant le timestamp. 
+-- Vous devrez convertir System.currentTimeMillis() en une valeur spécifique.
+INSERT INTO Ration (rationName, dateRation, idAnimal, numberOfAnimals) VALUES 
+('Ration vache laitière Matin', strftime('%s','now'), 1, 140),
+('Ration vache laitière Soir', strftime('%s','now'), 1, 140),
+('Ration vache viande Matin', strftime('%s','now'), 2, 200),
+('Ration vache viande Soir', strftime('%s','now'), 2, 200);
+
+-- Insertion dans la table Aliment
+INSERT INTO Aliment (nomAliment, description, averageQuantity, unite, stepQuantity) VALUES 
+('blé', 'du blé tendre', 3.2, 'KG', 0.1),
+('Soja', 'Soja', 1.8, 'KG', 0.1),
+('colza', 'colza', 3.6, 'KG', 0.1),
+('herbe', 'herbe', 10.0, 'KG', 0.1),
+('maïs', 'maïs', 32.5, 'KG', 1.0),
+('mineraux', 'mineraux', 4.0, 'KG', 1.0),
+('calcium', 'calcium', 1.0, 'KG', 1.0),
+('sel', 'sel', 0.33, 'sac', 1.0),
+('uree', 'uree', 4.0, 'sac', 1.0);
+
+-- Insertion dans la table RationAlimentCrossRef
+INSERT INTO RationAliment (idRation, idAliment, quantite) VALUES 
+(1, 1, 5.0),
+(1, 2, 3.0),
+(2, 3, 4.5);
