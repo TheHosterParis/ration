@@ -3,6 +3,7 @@ package com.example.ration.data.model
 data class RationComplete(
     val idRation: Long,
     val rationName: String,
+    val numberOfAnimals: Int,
     val date: Long,
     val animalId: Long,
     val animalName: String,

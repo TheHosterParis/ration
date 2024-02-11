@@ -19,6 +19,7 @@ class RationRepository(private val rationDao: RationDao) {
                 RationGrouped(
                     idRation = first.idRation,
                     rationName = first.rationName,
+                    numberOfAnimals = first.numberOfAnimals,
                     date = first.date,
                     animalId = first.animalId,
                     animalName = first.animalName,

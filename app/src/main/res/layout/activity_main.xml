@@ -24,7 +24,7 @@
         android:id="@+id/btnRationHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/historique_des_rations"
+        android:text="@string/Liste_des_rations"
         android:layout_marginTop="16dp"/>
 
 </LinearLayout>

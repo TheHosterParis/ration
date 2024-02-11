@@ -6,5 +6,10 @@
     <string name="animal_icon_description">description de l\'animal</string>
     <string name="liste_des_animaux">Liste des Animaux</string>
     <string name="liste_des_aliments">Liste des Aliments</string>
-    <string name="historique_des_rations">Historique des Rations</string>
+    <string name="Liste_des_rations">Liste des Rations</string>
+    <string name="nom_aliment">Nom Aliment</string>
+    <string name="quantit">Quantité</string>
+    <string name="unit">Unité</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
 </resources>

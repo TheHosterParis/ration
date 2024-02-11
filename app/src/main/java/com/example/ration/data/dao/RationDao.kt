@@ -50,6 +50,7 @@ interface RationDao {
         SELECT 
             r.idRation,
             r.rationName,
+            r.numberOfAnimals,
             r.date,
             a.id AS animalId,
             a.name AS animalName,

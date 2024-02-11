@@ -63,6 +63,8 @@ dependencies {
     // Kotlin Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
 
+    implementation("com.google.android.material:material:<version>")
+
     // KSP pour Room
     ksp("androidx.room:room-compiler:$roomVersion")
 }
