@@ -21,7 +21,7 @@
 
         <!-- MainActivity -->
         <activity
-            android:name=".MainActivity"
+            android:name="com.hoster.ration.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,13 +31,13 @@
         </activity>
 
         <!-- List and Detail Activities -->
-        <activity android:name=".ui.animal.AnimalListActivity" />
-        <activity android:name=".ui.animal.AnimalDetailActivity" />
-        <activity android:name=".ui.aliment.AlimentListActivity" />
-        <activity android:name=".ui.aliment.AlimentDetailActivity" />
-        <activity android:name=".ui.ration.RationHistoryActivity" />
-        <activity android:name=".ui.ration.RationDetailActivity" />
-        <activity android:name=".ui.ration.RationFormActivity" />
+        <activity android:name="com.hoster.ration.ui.animal.AnimalListActivity" />
+        <activity android:name="com.hoster.ration.ui.animal.AnimalDetailActivity" />
+        <activity android:name="com.hoster.ration.ui.aliment.AlimentListActivity" />
+        <activity android:name="com.hoster.ration.ui.aliment.AlimentDetailActivity" />
+        <activity android:name="com.hoster.ration.ui.ration.RationHistoryActivity" />
+        <activity android:name="com.hoster.ration.ui.ration.RationDetailActivity" />
+        <activity android:name="com.hoster.ration.ui.ration.RationFormActivity" />
 
     </application>
 </manifest>

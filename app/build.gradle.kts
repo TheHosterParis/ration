@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.ration"
+    namespace = "com.hoster.ration"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.ration"
+        applicationId = "com.hoster.ration"
         minSdk = 29
         targetSdk = 34
         versionCode = 1
