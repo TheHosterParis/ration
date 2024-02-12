@@ -11,5 +11,6 @@ data class RationAlimentCrossRef(
     var idAliment: Long,
     var quantity: Double,
     var unit: String,
-    var pas: Double
+    var pas: Double,
+    var quantityParRation: Double
 )

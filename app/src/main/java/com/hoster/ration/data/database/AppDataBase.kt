@@ -95,12 +95,12 @@ abstract class AppDatabase : RoomDatabase() {
         )
 
         val PREPOPULATE_RATION_ALIMENT_CROSS_REF = listOf(
-            RationAlimentCrossRef(idRation = 1, idAliment = 1, quantity = 500.0, unit = "KG", pas = 5.0),
-            RationAlimentCrossRef(idRation = 1, idAliment = 2, quantity = 300.0, unit = "KG", pas = 5.0),
-            RationAlimentCrossRef(idRation = 1, idAliment = 3, quantity = 3.0, unit = "KG", pas = 1.0),
-            RationAlimentCrossRef(idRation = 1, idAliment = 4, quantity = 45.0, unit = "KG", pas = 1.0),
-            RationAlimentCrossRef(idRation = 1, idAliment = 5, quantity = 200.0, unit = "KG", pas = 5.0),
-            RationAlimentCrossRef(idRation = 2, idAliment = 3, quantity = 4.5, unit = "KG", pas = 1.0),
+            RationAlimentCrossRef(idRation = 1, idAliment = 1, quantity = 448.0, unit = "KG", pas = 0.1, 3.2),
+            RationAlimentCrossRef(idRation = 1, idAliment = 2, quantity = 252.0, unit = "KG", pas = 0.1, 1.8),
+            RationAlimentCrossRef(idRation = 1, idAliment = 3, quantity = 504.0, unit = "KG", pas = 0.1, 3.6),
+            RationAlimentCrossRef(idRation = 1, idAliment = 4, quantity = 1400.0, unit = "KG", pas = 0.1, 10.0),
+            RationAlimentCrossRef(idRation = 1, idAliment = 5, quantity = 4550.0, unit = "KG", pas = 1.0, 32.5),
+            RationAlimentCrossRef(idRation = 2, idAliment = 3, quantity = 576.0, unit = "KG", pas = 0.1, 3.6),
             // Assurez-vous que les ID correspondent à ceux des rations et des aliments pré-remplis
             // Ajoutez plus selon les besoins
         )

@@ -12,4 +12,6 @@
     <string name="unit">Unité</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
+    <string name="total_0_kg">Total: 0 KG</string>
+    <string name="total_kg">Total: %1$.1f kg</string>
 </resources>

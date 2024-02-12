@@ -16,7 +16,7 @@ class RationDetailActivity : AppCompatActivity() {
     private lateinit var tvNumberOfAnimals: TextView
     private lateinit var btnDecrease: Button
     private lateinit var btnIncrease: Button
-
+    private lateinit var tvTotalWeight: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ration_detail)
@@ -26,33 +26,47 @@ class RationDetailActivity : AppCompatActivity() {
         tvNumberOfAnimals = findViewById(R.id.tvNumberOfAnimals)
         btnDecrease = findViewById(R.id.btnDecrease)
         btnIncrease = findViewById(R.id.btnIncrease)
+        tvTotalWeight = findViewById(R.id.tvTotalWeight)
 
         // Récupérez l'objet RationGrouped passé via l'Intent
         val rationGrouped = intent.getSerializableExtra("RATION_GROUPED") as RationGrouped
 
-        val componentsRecyclerView: RecyclerView = findViewById(R.id.rvAliments)
-        componentsRecyclerView.layoutManager = LinearLayoutManager(this)
-        // Supposons que rationGrouped.components contient déjà la liste des composants
-        val adapter = AlimentDeRationAdapter(rationGrouped.components)
-        componentsRecyclerView.adapter = adapter
+        val alimentsRecyclerView: RecyclerView = findViewById(R.id.rvAliments)
+        alimentsRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        // Instance de l'Adapter
+        val adapter = AlimentDeRationAdapter(rationGrouped.aliments)
+        alimentsRecyclerView.adapter = adapter
+
         // Récupération et affichage des données passées via l'intent
         tvRationName.text = rationGrouped.rationName
         var numberOfAnimals = rationGrouped.numberOfAnimals
         tvNumberOfAnimals.text = numberOfAnimals.toString()
 
+        // Initialisation de l'affichage avec les données initiales
+        updateUI(adapter, numberOfAnimals)
+
         // Gestion des clics pour modifier le nombre d'animaux
         btnDecrease.setOnClickListener {
-            if (numberOfAnimals > 0) {
+            if (numberOfAnimals > 1) {
                 numberOfAnimals--
-                tvNumberOfAnimals.text = numberOfAnimals.toString()
-                // Mettez à jour la liste des aliments ici en fonction du nouveau nombre d'animaux
+                updateUI(adapter, numberOfAnimals)
             }
         }
 
         btnIncrease.setOnClickListener {
             numberOfAnimals++
-            tvNumberOfAnimals.text = numberOfAnimals.toString()
-            // Mettez à jour la liste des aliments ici en fonction du nouveau nombre d'animaux
+            updateUI(adapter, numberOfAnimals)
         }
+    }
+    private fun updateUI(adapter: AlimentDeRationAdapter, numberOfAnimals: Int) {
+        tvNumberOfAnimals.text = numberOfAnimals.toString()
+        adapter.adjustQuantitiesAndRound(numberOfAnimals)
+        updateTotalWeight(adapter)
+    }
+
+    private fun updateTotalWeight(adapter: AlimentDeRationAdapter) {
+        val totalWeight = adapter.getTotalWeight()
+        tvTotalWeight.text = getString(R.string.total_kg, totalWeight)
     }
 }

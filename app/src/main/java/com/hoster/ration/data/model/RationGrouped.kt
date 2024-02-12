@@ -9,13 +9,14 @@ data class RationGrouped(
     val date: Long,
     val animalId: Long,
     val animalName: String,
-    val components: List<AlimentQuantity>
+    val aliments: List<AlimentQuantity>
 ) : Serializable
 
 data class AlimentQuantity(
     val idAliment: Long,
     val alimentName: String,
-    val quantity: Double,
+    var quantity: Double,
     val unit: String,
-    val pas: Double
+    val pas: Double,
+    val quantityParRation: Double
 ) : Serializable

@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hoster.ration.R
 import com.hoster.ration.data.model.AlimentQuantity
+import kotlin.math.round
 
 class AlimentDeRationAdapter(private var alimentList: List<AlimentQuantity>) :
     RecyclerView.Adapter<AlimentDeRationAdapter.ViewHolder>() {
@@ -25,7 +26,7 @@ class AlimentDeRationAdapter(private var alimentList: List<AlimentQuantity>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val aliment = alimentList[position]
         holder.alimentNameTextView.text = aliment.alimentName
-        holder.quantityTextView.text = aliment.quantity.toString()
+        holder.quantityTextView.text = String.format("%.1f", aliment.quantity)
         holder.unitTextView.text = aliment.unit
     }
 
@@ -34,5 +35,19 @@ class AlimentDeRationAdapter(private var alimentList: List<AlimentQuantity>) :
     fun updateComponents(newComponents: List<AlimentQuantity>) {
         this.alimentList = newComponents
         notifyDataSetChanged()
+    }
+    // Méthode pour ajuster les quantités et calculer le poids total des aliments
+    fun adjustQuantitiesAndRound(numberOfAnimals: Int) {
+        alimentList = alimentList.map { aliment ->
+            // Calcul de la quantité totale avant arrondi
+            val totalQuantity = aliment.quantityParRation * numberOfAnimals
+            // Arrondi de la quantité totale en fonction du pas
+            val roundedQuantity = round(totalQuantity / aliment.pas) * aliment.pas
+            aliment.copy(quantity = roundedQuantity)
+        }
+        notifyDataSetChanged()
+    }
+    fun getTotalWeight(): Double {
+        return alimentList.sumOf { it.quantity }
     }
 }

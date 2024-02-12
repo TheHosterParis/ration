@@ -28,13 +28,13 @@ class RationListAdapter(private var rationGroups: List<RationGrouped>, private v
         holder.tvRationName.text = rationGroup.rationName
         holder.tvnumberOfAnimals.text = rationGroup.numberOfAnimals.toString()
         // Pour simplifier, affichez les composants sous forme de texte. Pour une présentation plus élaborée, envisagez un RecyclerView imbriqué.
-        val componentsText = rationGroup.components.joinToString(separator = "\n") { "${it.alimentName}: ${it.quantity}${it.unit}, Pas: ${it.pas}" }
-        Log.d("RationListAdapter",componentsText)
-        //holder.tvAlimentDetails.text = componentsText
+        val alimentsText = rationGroup.aliments.joinToString(separator = "\n") { "${it.alimentName}: ${it.quantity}${it.unit}, Pas: ${it.pas}" }
+        Log.d("RationListAdapter",alimentsText)
+        //holder.tvAlimentDetails.text = alimentsText
 
         holder.itemView.setOnClickListener {
             onRationClickListener.onRationClicked(rationGroup)
-            Log.d("RationListAdapter",componentsText)
+            Log.d("RationListAdapter",alimentsText)
         }
     }
 

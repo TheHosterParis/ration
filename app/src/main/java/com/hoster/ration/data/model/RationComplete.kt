@@ -11,5 +11,6 @@ data class RationComplete(
     val alimentName: String,
     val quantity: Double,
     val unit: String,
-    val pas: Double
+    val pas: Double,
+    val quantityParRation: Double
 )
