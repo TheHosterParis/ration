@@ -14,4 +14,5 @@
     <string name="plus">+</string>
     <string name="total_0_kg">Total: 0 KG</string>
     <string name="total_kg">Total: %1$.1f kg</string>
+    <string name="modifier">Modifier</string>
 </resources>

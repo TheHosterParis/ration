@@ -27,4 +27,11 @@
         android:layout_height="wrap_content"
         android:text="@string/unit"
         android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/editTextAlimentQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:visibility="gone"/>
 </LinearLayout>

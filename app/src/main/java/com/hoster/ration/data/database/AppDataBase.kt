@@ -75,7 +75,7 @@ abstract class AppDatabase : RoomDatabase() {
 
         val PREPOPULATE_RATIONS = listOf(
             Ration(rationName = "Ration vaches en lactation", date = System.currentTimeMillis(), animalId = 1, numberOfAnimals = 140, information = "lactation 1"),
-            Ration(rationName = "Ration vaches en lactation 2", date = System.currentTimeMillis(), animalId = 1, numberOfAnimals = 160, information = "lactation 2"),
+            Ration(rationName = "Ration vaches en lactation du 3 juin", date = 1685743200, animalId = 1, numberOfAnimals = 140, information = "lactation 2"),
             Ration(rationName = "Ration vaches taries", date = System.currentTimeMillis(), animalId = 2, numberOfAnimals = 4, information = "vache tarie "),
             Ration(rationName = "Ration vaches prépa vélage", date = System.currentTimeMillis(), animalId = 4, numberOfAnimals = 20, information = "Ration prepa velage "),
             Ration(rationName = "Ration génisse", date = System.currentTimeMillis(), animalId = 3, numberOfAnimals = 60, information = "Ration genisse"),
@@ -88,10 +88,12 @@ abstract class AppDatabase : RoomDatabase() {
             Aliment(alimentName = "colza", description = "colza", averageQuantity = 3.6, unit = "KG", step = 0.1),
             Aliment(alimentName = "herbe", description = "herbe", averageQuantity = 10.0, unit = "KG", step = 0.1),
             Aliment(alimentName = "maïs", description = "maïs", averageQuantity = 32.5, unit = "KG", step = 1.0),
-            Aliment(alimentName = "mineraux", description = "mineraux", averageQuantity = 4.0, unit = "KG", step = 1.0), // Pas supposé 1.0 par défaut si non spécifié
+            Aliment(alimentName = "mineraux", description = "mineraux", averageQuantity = 0.3, unit = "KG", step = 0.1), // Pas supposé 1.0 par défaut si non spécifié
             Aliment(alimentName = "calcium", description = "calcium", averageQuantity = 1.0, unit = "KG", step = 1.0),
-            Aliment(alimentName = "sel", description = "sel", averageQuantity = 0.33, unit = "sac", step = 1.0),
-            Aliment(alimentName = "uree", description = "uree", averageQuantity = 4.0, unit = "sac", step = 1.0)
+            Aliment(alimentName = "sel", description = "sel", averageQuantity = 0.06, unit = "KG", step = 0.1),
+            Aliment(alimentName = "uree", description = "uree", averageQuantity = 4.0, unit = "KG", step = 1.0),
+            Aliment(alimentName = "lin", description = "lin", averageQuantity = 1.2, unit = "KG", step = 0.1),
+            Aliment(alimentName = "carbonateCalcium", description = "carbonateCalcium", averageQuantity = 0.09, unit = "KG", step = 0.1)
         )
 
         val PREPOPULATE_RATION_ALIMENT_CROSS_REF = listOf(
@@ -100,7 +102,15 @@ abstract class AppDatabase : RoomDatabase() {
             RationAlimentCrossRef(idRation = 1, idAliment = 3, quantity = 504.0, unit = "KG", pas = 0.1, 3.6),
             RationAlimentCrossRef(idRation = 1, idAliment = 4, quantity = 1400.0, unit = "KG", pas = 0.1, 10.0),
             RationAlimentCrossRef(idRation = 1, idAliment = 5, quantity = 4550.0, unit = "KG", pas = 1.0, 32.5),
-            RationAlimentCrossRef(idRation = 2, idAliment = 3, quantity = 576.0, unit = "KG", pas = 0.1, 3.6),
+            RationAlimentCrossRef(idRation = 2, idAliment = 1, quantity = 420.0, unit = "KG", pas = 0.1, 3.0),
+            RationAlimentCrossRef(idRation = 2, idAliment = 10, quantity = 165.0, unit = "KG", pas = 0.1, 1.2),
+            RationAlimentCrossRef(idRation = 2, idAliment = 6, quantity = 42.0, unit = "KG", pas = 0.1, 0.3),
+            RationAlimentCrossRef(idRation = 2, idAliment = 11, quantity = 12.0, unit = "KG", pas = 0.1, 0.09),
+            RationAlimentCrossRef(idRation = 2, idAliment = 8, quantity = 8.0, unit = "KG", pas = 0.1, 0.06),
+            RationAlimentCrossRef(idRation = 2, idAliment = 9, quantity = 14.0, unit = "KG", pas = 0.1, 0.1),
+            RationAlimentCrossRef(idRation = 2, idAliment = 3, quantity = 200.0, unit = "KG", pas = 1.0, 1.4),
+            RationAlimentCrossRef(idRation = 2, idAliment = 2, quantity = 500.0, unit = "KG", pas = 1.0, 3.6),
+            RationAlimentCrossRef(idRation = 2, idAliment = 4, quantity = 400.0, unit = "KG", pas = 1.0, 2.9),
             // Assurez-vous que les ID correspondent à ceux des rations et des aliments pré-remplis
             // Ajoutez plus selon les besoins
         )

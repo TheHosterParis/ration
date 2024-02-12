@@ -17,6 +17,8 @@ class RationDetailActivity : AppCompatActivity() {
     private lateinit var btnDecrease: Button
     private lateinit var btnIncrease: Button
     private lateinit var tvTotalWeight: TextView
+    // Ajoutez un indicateur pour savoir si vous êtes en mode édition
+    private var isInEditMode = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ration_detail)
@@ -57,6 +59,12 @@ class RationDetailActivity : AppCompatActivity() {
         btnIncrease.setOnClickListener {
             numberOfAnimals++
             updateUI(adapter, numberOfAnimals)
+        }
+
+        val btnEditQuantities: Button = findViewById(R.id.btnEditQuantities)
+        btnEditQuantities.setOnClickListener {
+            isInEditMode = !isInEditMode
+            adapter.setEditMode(isInEditMode)
         }
     }
     private fun updateUI(adapter: AlimentDeRationAdapter, numberOfAnimals: Int) {

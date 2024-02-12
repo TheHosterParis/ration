@@ -52,4 +52,11 @@
         android:layout_marginTop="8dp"
         android:textStyle="bold"
         android:text="@string/total_0_kg" />
+
+    <Button
+        android:id="@+id/btnEditQuantities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/modifier" />
+
 </LinearLayout>
