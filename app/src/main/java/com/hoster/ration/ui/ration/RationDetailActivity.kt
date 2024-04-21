@@ -30,7 +30,7 @@ class RationDetailActivity : AppCompatActivity() {
         btnIncrease = findViewById(R.id.btnIncrease)
         tvTotalWeight = findViewById(R.id.tvTotalWeight)
 
-        // Récupérez l'objet RationGrouped passé via l'Intent
+        // Récupérez l' objet RationGrouped passé via l'Intent
         val rationGrouped = intent.getSerializableExtra("RATION_GROUPED") as RationGrouped
 
         val alimentsRecyclerView: RecyclerView = findViewById(R.id.rvAliments)
@@ -40,15 +40,15 @@ class RationDetailActivity : AppCompatActivity() {
         val adapter = AlimentDeRationAdapter(rationGrouped.aliments)
         alimentsRecyclerView.adapter = adapter
 
-        // Récupération et affichage des données passées via l'intent
+        // Récupération et affichage des données passées via l' intent
         tvRationName.text = rationGrouped.rationName
         var numberOfAnimals = rationGrouped.numberOfAnimals
         tvNumberOfAnimals.text = numberOfAnimals.toString()
 
-        // Initialisation de l'affichage avec les données initiales
+        // Initialisation de l' affichage avec les données initiales
         updateUI(adapter, numberOfAnimals)
 
-        // Gestion des clics pour modifier le nombre d'animaux
+        // Gestion des clics pour modifier le nombre d' animaux
         btnDecrease.setOnClickListener {
             if (numberOfAnimals > 1) {
                 numberOfAnimals--
