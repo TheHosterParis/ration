@@ -59,7 +59,8 @@ interface RationDao {
             rac.quantity,
             rac.unit,
             rac.pas,
-            rac.quantityParRation
+            rac.quantityParRation,
+            p.idPreparation AS preparationId
         FROM 
             rations r
         INNER JOIN 
@@ -68,6 +69,8 @@ interface RationDao {
             ration_aliment_cross_ref rac ON r.idRation = rac.idRation
         INNER JOIN 
             aliments al ON rac.idAliment = al.idAliment
+        INNER JOIN 
+            preparations p ON r.idRation = p.rationId
     """)
     suspend fun getAllRationDetails(): List<RationComplete>
 }

@@ -8,6 +8,7 @@ data class RationGrouped(
     val numberOfAnimals: Int,
     val date: Long,
     val animalId: Long,
+    val preparationId: Long,
     val animalName: String,
     val aliments: List<AlimentQuantity>
 ) : Serializable

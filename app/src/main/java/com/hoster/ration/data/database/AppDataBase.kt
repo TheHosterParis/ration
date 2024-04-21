@@ -1,32 +1,36 @@
 package com.hoster.ration.data.database
 
+import android.content.Context
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.hoster.ration.data.dao.AnimalDao
-import com.hoster.ration.data.dao.AlimentDao
-import com.hoster.ration.data.dao.RationDao
-import com.hoster.ration.data.model.Animal
-import com.hoster.ration.data.model.Aliment
-import com.hoster.ration.data.model.Ration
-import com.hoster.ration.data.util.Converters
-import android.content.Context
-import androidx.room.Room
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.hoster.ration.data.dao.AlimentDao
+import com.hoster.ration.data.dao.AnimalDao
+import com.hoster.ration.data.dao.PreparationDao
 import com.hoster.ration.data.dao.RationAlimentCrossRefDao
+import com.hoster.ration.data.dao.RationDao
+import com.hoster.ration.data.model.Aliment
+import com.hoster.ration.data.model.Animal
+import com.hoster.ration.data.model.Preparation
+import com.hoster.ration.data.model.PreparationStep
+import com.hoster.ration.data.model.Ration
 import com.hoster.ration.data.model.RationAlimentCrossRef
+import com.hoster.ration.data.util.Converters
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 // Assurez-vous d'importer vos classes d'entités et DAO ici
 
-@Database(entities = [Animal::class, Aliment::class, Ration::class, RationAlimentCrossRef::class], version = 1)
+@Database(entities = [Animal::class, Aliment::class, Ration::class, RationAlimentCrossRef::class, Preparation::class, PreparationStep::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun animalDao(): AnimalDao
     abstract fun alimentDao(): AlimentDao
     abstract fun rationDao(): RationDao
+    abstract fun preparationDao(): PreparationDao
     abstract fun rationAlimentCrossRefDao(): RationAlimentCrossRefDao
 
     // Ajoutez ici toute autre configuration spécifique à la base de données si nécessaire
@@ -42,6 +46,7 @@ abstract class AppDatabase : RoomDatabase() {
                     "ration_database"
                 )
                     .addCallback(roomDatabaseCallback)
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance
@@ -56,6 +61,8 @@ abstract class AppDatabase : RoomDatabase() {
                         database.animalDao().insertAll(PREPOPULATE_ANIMALS)
                         database.rationDao().insertAll(PREPOPULATE_RATIONS)
                         database.alimentDao().insertAll(PREPOPULATE_ALIMENTS)
+                        database.preparationDao().insertAll(PREPOPULATE_PREPARATION)
+                        database.preparationDao().insertAllSteps(PREPOPULATE_PREPARATION_STEPS)
                         PREPOPULATE_RATION_ALIMENT_CROSS_REF.forEach {
                             database.rationAlimentCrossRefDao().insert(it)
                         }
@@ -94,6 +101,18 @@ abstract class AppDatabase : RoomDatabase() {
             Aliment(alimentName = "uree", description = "uree", averageQuantity = 4.0, unit = "KG", step = 1.0),
             Aliment(alimentName = "lin", description = "lin", averageQuantity = 1.2, unit = "KG", step = 0.1),
             Aliment(alimentName = "carbonateCalcium", description = "carbonateCalcium", averageQuantity = 0.09, unit = "KG", step = 0.1)
+        )
+        val PREPOPULATE_PREPARATION_STEPS = listOf(
+            PreparationStep(description = "Versez de la mort au rats", name = "Poison", preparationId = 1, order = 1),
+            PreparationStep(description = "Pressez trois quartier d' orange", name = "Orange", preparationId = 1, order = 2),
+            PreparationStep(description = "Doubadibadi dou daaaaa", name = "Fin", preparationId = 1, order = 3),
+            PreparationStep(description = "Benner le blé dans la mélangeuse", name = "Mélangeuse", preparationId = 2, order = 1),
+            PreparationStep(description = "Peser le reste des compléments et petits sacs", name = "Mélange compléments", preparationId = 2, order = 2),
+        )
+
+        val PREPOPULATE_PREPARATION = listOf(
+            Preparation(name =  "Pudding à l' arsenic", rationId = 1),
+            Preparation(name = "Mélangeuse", rationId = 2),
         )
 
         val PREPOPULATE_RATION_ALIMENT_CROSS_REF = listOf(

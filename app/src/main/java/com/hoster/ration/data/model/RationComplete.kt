@@ -6,6 +6,7 @@ data class RationComplete(
     val numberOfAnimals: Int,
     val date: Long,
     val animalId: Long,
+    val preparationId: Long,
     val animalName: String,
     val idAliment: Long,
     val alimentName: String,

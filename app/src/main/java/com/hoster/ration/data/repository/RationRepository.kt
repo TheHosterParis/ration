@@ -22,6 +22,7 @@ class RationRepository(private val rationDao: RationDao) {
                     numberOfAnimals = first.numberOfAnimals,
                     date = first.date,
                     animalId = first.animalId,
+                    preparationId = first.preparationId,
                     animalName = first.animalName,
                     aliments = entry.value.map { aliment ->
                         AlimentQuantity(
