@@ -10,7 +10,7 @@ data class Aliment(
     @PrimaryKey(autoGenerate = true) var idAliment: Long = 0,
     var alimentName: String,
     var description: String?,
-    var averageQuantity: Double,
     var unit: String,
-    var step: Double
+    var step: Double,
+    var ordre: Int
 )

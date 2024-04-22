@@ -9,11 +9,12 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hoster.ration.R
-import com.hoster.ration.data.model.AlimentQuantity
+import com.hoster.ration.data.model.RationGrouped
+import com.hoster.ration.ui.util.FormuleUtil
 import com.hoster.ration.ui.util.RounderUtil
 import kotlin.math.roundToInt
 
-class AlimentDeRationAdapter(private var alimentList: List<AlimentQuantity>) :
+class AlimentDeRationAdapter(private var rationGrouped: RationGrouped) :
     RecyclerView.Adapter<AlimentDeRationAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -29,24 +30,26 @@ class AlimentDeRationAdapter(private var alimentList: List<AlimentQuantity>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val aliment = alimentList[position]
+        val aliment = rationGrouped.aliments[position]
+        var quantity = FormuleUtil().ComputeQuantity(rationGrouped.numberOfAnimals, aliment.pas)
+        val quantityRounded = RounderUtil().roundToPrecision(quantity, 1)
         holder.alimentNameTextView.text = aliment.alimentName
-        holder.quantityTextView.text = String.format("%.1f", aliment.quantity)
+        holder.quantityTextView.text = String.format("%.1f", quantityRounded)
         holder.unitTextView.text = aliment.unit
 
         // Affichez EditText ou TextView en fonction du mode édition
         if (isInEditMode) {
             holder.quantityEditText.visibility = View.VISIBLE
             holder.quantityTextView.visibility = View.GONE
-            holder.quantityEditText.setText(aliment.quantityParRation.toString())
+            holder.quantityEditText.setText(aliment.pas.toString()) //TODO mettre un nouveau champs 'pas'
 
             holder.quantityEditText.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     // Convertir le texte en nombre et mettre à jour la quantité de l'aliment
-                    s?.toString()?.toDoubleOrNull()?.let { newQuantity ->
-                        aliment.quantity = newQuantity
+                    s?.toString()?.toDoubleOrNull()?.let { newStep ->
+                        aliment.pas = newStep
                         // Mettez à jour le total ou d'autres UI si nécessaire
                     }
                 }
@@ -57,30 +60,19 @@ class AlimentDeRationAdapter(private var alimentList: List<AlimentQuantity>) :
         } else {
             holder.quantityEditText.visibility = View.GONE
             holder.quantityTextView.visibility = View.VISIBLE
-            holder.quantityTextView.text = aliment.quantity.toString()
+            holder.quantityTextView.text = String.format("%.1f", quantityRounded)
         }
     }
 
-    override fun getItemCount() = alimentList.size
+    override fun getItemCount() = rationGrouped.aliments.size
 
-    fun updateComponents(newComponents: List<AlimentQuantity>) {
-        this.alimentList = newComponents
-        notifyDataSetChanged()
-    }
     // Méthode pour ajuster les quantités et calculer le poids total des aliments
-    fun adjustQuantitiesAndRound(numberOfAnimals: Int) {
-        val rounderUtil = RounderUtil()
-        alimentList = alimentList.map { aliment ->
-            // Calcul de la quantité totale avant arrondi
-            val totalQuantity = aliment.quantityParRation * numberOfAnimals
-            val roundToPrecision =
-                rounderUtil.roundToPrecision(totalQuantity, aliment.pas.roundToInt())
-            aliment.copy(quantity = roundToPrecision)
-        }
+    fun adjustQuantities(numberOfAnimals: Int) {
+        rationGrouped.numberOfAnimals = numberOfAnimals
         notifyDataSetChanged()
     }
     fun getTotalWeight(): Double {
-        return alimentList.sumOf { it.quantity }
+        return rationGrouped.aliments.map { it.pas * rationGrouped.numberOfAnimals }.sum()
     }
     // Ajoutez une variable pour suivre le mode édition
     private var isInEditMode = false

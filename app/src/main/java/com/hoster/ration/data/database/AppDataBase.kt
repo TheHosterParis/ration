@@ -81,57 +81,72 @@ abstract class AppDatabase : RoomDatabase() {
         )
 
         val PREPOPULATE_RATIONS = listOf(
-            Ration(rationName = "Ration vaches en lactation", date = System.currentTimeMillis(), animalId = 1, numberOfAnimals = 140, information = "lactation 1"),
+            Ration(rationName = "Ration vaches en lactation", date = System.currentTimeMillis(), animalId = 1, numberOfAnimals = 130, information = "lactation 1"),
             Ration(rationName = "Ration vaches en lactation du 3 juin", date = 1685743200, animalId = 1, numberOfAnimals = 140, information = "lactation 2"),
             Ration(rationName = "Ration vaches taries", date = System.currentTimeMillis(), animalId = 2, numberOfAnimals = 4, information = "vache tarie "),
             Ration(rationName = "Ration vaches prépa vélage", date = System.currentTimeMillis(), animalId = 4, numberOfAnimals = 20, information = "Ration prepa velage "),
             Ration(rationName = "Ration génisse", date = System.currentTimeMillis(), animalId = 3, numberOfAnimals = 60, information = "Ration genisse"),
             // Ajoutez plus selon les besoins
+            Ration(rationName = "Ration vaches en lactation Démo", date = System.currentTimeMillis(), animalId = 1, numberOfAnimals = 130, information = "lactation demo"),
+
         )
 
         val PREPOPULATE_ALIMENTS = listOf(
-            Aliment(alimentName = "blé", description = "du blé tendre", averageQuantity = 3.2, unit = "KG", step = 0.1),
-            Aliment(alimentName = "Soja", description = "Soja", averageQuantity = 1.8, unit = "KG", step = 0.1),
-            Aliment(alimentName = "colza", description = "colza", averageQuantity = 3.6, unit = "KG", step = 0.1),
-            Aliment(alimentName = "herbe", description = "herbe", averageQuantity = 10.0, unit = "KG", step = 0.1),
-            Aliment(alimentName = "maïs", description = "maïs", averageQuantity = 32.5, unit = "KG", step = 1.0),
-            Aliment(alimentName = "mineraux", description = "mineraux", averageQuantity = 0.3, unit = "KG", step = 0.1), // Pas supposé 1.0 par défaut si non spécifié
-            Aliment(alimentName = "calcium", description = "calcium", averageQuantity = 1.0, unit = "KG", step = 1.0),
-            Aliment(alimentName = "sel", description = "sel", averageQuantity = 0.06, unit = "KG", step = 0.1),
-            Aliment(alimentName = "uree", description = "uree", averageQuantity = 4.0, unit = "KG", step = 1.0),
-            Aliment(alimentName = "lin", description = "lin", averageQuantity = 1.2, unit = "KG", step = 0.1),
-            Aliment(alimentName = "carbonateCalcium", description = "carbonateCalcium", averageQuantity = 0.09, unit = "KG", step = 0.1)
+
+            Aliment(alimentName = "Sodagrain", description = "", unit = "KG", step = 2.5, ordre = 1),
+            Aliment(alimentName = "Régalin", description = "", unit = "KG", step = 1.5, ordre = 2),
+            Aliment(alimentName = "Minéraux", description = "Minéraux", unit = "KG", step = 0.3, ordre = 3), // Pas supposé 1.0 par défaut si non spécifié
+            Aliment(alimentName = "Carbonate", description = "Carbonate", unit = "KG", step = 0.14, ordre = 4), // Pas supposé 1.0 par défaut si non spécifié
+            Aliment(alimentName = "Sel", description = "Sel", unit = "KG", step = 0.06, ordre = 5),
+            Aliment(alimentName = "Urée", description = "Urée", unit = "KG", step = 0.08, ordre = 6),
+            Aliment(alimentName = "Soja", description = "Soja", unit = "KG", step = 2.0, ordre = 7),
+            Aliment(alimentName = "Colza", description = "Colza", unit = "KG", step = 3.0, ordre = 8),
+            Aliment(alimentName = "enrubannage", description = "Enrubannage", unit = "KG", step = 2.66, ordre = 9),
+            Aliment(alimentName = "ensilage_de_seigle", description = "Ensilage de Seigle", unit = "KG", step = 7.0, ordre = 10),
+            Aliment(alimentName = "Méthio_protect", description = "Méthio protect", unit = "KG", step = 0.06, ordre = 11),
+            Aliment(alimentName = "ensilage_de_mais", description = "Ensilage de Maïs", unit = "KG", step = 52.0, ordre = 12)
         )
         val PREPOPULATE_PREPARATION_STEPS = listOf(
-            PreparationStep(description = "Versez de la mort au rats", name = "Poison", preparationId = 1, order = 1),
-            PreparationStep(description = "Pressez trois quartier d' orange", name = "Orange", preparationId = 1, order = 2),
-            PreparationStep(description = "Doubadibadi dou daaaaa", name = "Fin", preparationId = 1, order = 3),
+            PreparationStep(description = "Rajouter Méthio Protect et Ensilage de Maïs", name = "Matin", preparationId = 1, order = 1),
+            PreparationStep(description = "Si plus de 1 godet de refus donner aux génisses", name = "Refus", preparationId = 1, order = 2),
             PreparationStep(description = "Benner le blé dans la mélangeuse", name = "Mélangeuse", preparationId = 2, order = 1),
-            PreparationStep(description = "Peser le reste des compléments et petits sacs", name = "Mélange compléments", preparationId = 2, order = 2),
+            PreparationStep(description = "Peser le reste des compléments et petits sacs", name = "Mélange compléments", preparationId = 2, order = 2)
         )
 
         val PREPOPULATE_PREPARATION = listOf(
-            Preparation(name =  "Pudding à l' arsenic", rationId = 1),
-            Preparation(name = "Mélangeuse", rationId = 2),
+            Preparation(name =  "Preparation", rationId = 1),
+            Preparation(name = "Mélangeuse", rationId = 2)
         )
 
         val PREPOPULATE_RATION_ALIMENT_CROSS_REF = listOf(
-            RationAlimentCrossRef(idRation = 1, idAliment = 1, quantity = 448.0, unit = "KG", pas = 0.1, 3.2),
-            RationAlimentCrossRef(idRation = 1, idAliment = 2, quantity = 252.0, unit = "KG", pas = 0.1, 1.8),
-            RationAlimentCrossRef(idRation = 1, idAliment = 3, quantity = 504.0, unit = "KG", pas = 0.1, 3.6),
-            RationAlimentCrossRef(idRation = 1, idAliment = 4, quantity = 1400.0, unit = "KG", pas = 0.1, 10.0),
-            RationAlimentCrossRef(idRation = 1, idAliment = 5, quantity = 4550.0, unit = "KG", pas = 1.0, 32.5),
-            RationAlimentCrossRef(idRation = 2, idAliment = 1, quantity = 420.0, unit = "KG", pas = 0.1, 3.0),
-            RationAlimentCrossRef(idRation = 2, idAliment = 10, quantity = 165.0, unit = "KG", pas = 0.1, 1.2),
-            RationAlimentCrossRef(idRation = 2, idAliment = 6, quantity = 42.0, unit = "KG", pas = 0.1, 0.3),
-            RationAlimentCrossRef(idRation = 2, idAliment = 11, quantity = 12.0, unit = "KG", pas = 0.1, 0.09),
-            RationAlimentCrossRef(idRation = 2, idAliment = 8, quantity = 8.0, unit = "KG", pas = 0.1, 0.06),
-            RationAlimentCrossRef(idRation = 2, idAliment = 9, quantity = 14.0, unit = "KG", pas = 0.1, 0.1),
-            RationAlimentCrossRef(idRation = 2, idAliment = 3, quantity = 200.0, unit = "KG", pas = 1.0, 1.4),
-            RationAlimentCrossRef(idRation = 2, idAliment = 2, quantity = 500.0, unit = "KG", pas = 1.0, 3.6),
-            RationAlimentCrossRef(idRation = 2, idAliment = 4, quantity = 400.0, unit = "KG", pas = 1.0, 2.9),
+            RationAlimentCrossRef(idRation = 1, idAliment = 1, unit = "KG", pas = 0.1, 3.2),
+            RationAlimentCrossRef(idRation = 1, idAliment = 2, unit = "KG", pas = 0.1, 1.8),
+            RationAlimentCrossRef(idRation = 1, idAliment = 3, unit = "KG", pas = 0.1, 3.6),
+            RationAlimentCrossRef(idRation = 1, idAliment = 4, unit = "KG", pas = 0.1, 10.0),
+            RationAlimentCrossRef(idRation = 1, idAliment = 5, unit = "KG", pas = 1.0, 32.5),
+            RationAlimentCrossRef(idRation = 2, idAliment = 1, unit = "KG", pas = 0.1, 3.0),
+            RationAlimentCrossRef(idRation = 2, idAliment = 10, unit = "KG", pas = 0.1, 1.2),
+            RationAlimentCrossRef(idRation = 2, idAliment = 6, unit = "KG", pas = 0.1, 0.3),
+            RationAlimentCrossRef(idRation = 2, idAliment = 11, unit = "KG", pas = 0.1, 0.09),
+            RationAlimentCrossRef(idRation = 2, idAliment = 8, unit = "KG", pas = 0.1, 0.06),
+            RationAlimentCrossRef(idRation = 2, idAliment = 9, unit = "KG", pas = 0.1, 0.1),
+            RationAlimentCrossRef(idRation = 2, idAliment = 3, unit = "KG", pas = 1.0, 1.4),
+            RationAlimentCrossRef(idRation = 2, idAliment = 2, unit = "KG", pas = 1.0, 3.6),
+            RationAlimentCrossRef(idRation = 2, idAliment = 4, unit = "KG", pas = 1.0, 2.9),
             // Assurez-vous que les ID correspondent à ceux des rations et des aliments pré-remplis
             // Ajoutez plus selon les besoins
+            RationAlimentCrossRef(idRation = 6, idAliment = 1, unit = "KG", pas = 1.0, 2.5),
+            RationAlimentCrossRef(idRation = 6, idAliment = 2, unit = "KG", pas = 1.0, 1.5),
+            RationAlimentCrossRef(idRation = 6, idAliment = 3, unit = "KG", pas = 1.0, 0.3),
+            RationAlimentCrossRef(idRation = 6, idAliment = 4, unit = "KG", pas = 1.0, 0.14),
+            RationAlimentCrossRef(idRation = 6, idAliment = 5, unit = "KG", pas = 1.0, 0.06),
+            RationAlimentCrossRef(idRation = 6, idAliment = 6, unit = "KG", pas = 1.0, 0.08),
+            RationAlimentCrossRef(idRation = 6, idAliment = 7, unit = "KG", pas = 1.0, 2.0),
+            RationAlimentCrossRef(idRation = 6, idAliment = 8, unit = "KG", pas = 1.0, 3.0),
+            RationAlimentCrossRef(idRation = 6, idAliment = 9, unit = "KG", pas = 1.0, 2.66),
+            RationAlimentCrossRef(idRation = 6, idAliment = 10, unit = "KG", pas = 1.0, 7.0),
+            RationAlimentCrossRef(idRation = 6, idAliment = 11, unit = "KG", pas = 1.0, 0.06),
+            RationAlimentCrossRef(idRation = 6, idAliment = 12, unit = "KG", pas = 1.0, 52.0)
         )
     }
 }

@@ -9,7 +9,6 @@ import androidx.room.Index
 data class RationAlimentCrossRef(
     var idRation: Long,
     var idAliment: Long,
-    var quantity: Double,
     var unit: String,
     var pas: Double,
     var quantityParRation: Double

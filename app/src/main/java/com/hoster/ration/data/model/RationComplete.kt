@@ -10,8 +10,6 @@ data class RationComplete(
     val animalName: String,
     val idAliment: Long,
     val alimentName: String,
-    val quantity: Double,
     val unit: String,
-    val pas: Double,
-    val quantityParRation: Double
+    val pas: Double
 )

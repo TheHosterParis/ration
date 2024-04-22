@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hoster.ration.R
 import com.hoster.ration.data.dao.PreparationDao
-import com.hoster.ration.data.dao.RationDao
 import com.hoster.ration.data.database.AppDatabase
 import com.hoster.ration.data.model.RationGrouped
 import com.hoster.ration.ui.aliment.AlimentDeRationAdapter
@@ -57,7 +56,7 @@ class RationDetailActivity : AppCompatActivity() {
         alimentsRecyclerView.layoutManager = LinearLayoutManager(this)
 
         // Instance de l'Adapter
-        val adapter = AlimentDeRationAdapter(rationGrouped.aliments)
+        val adapter = AlimentDeRationAdapter(rationGrouped)
         alimentsRecyclerView.adapter = adapter
 
         // Récupération et affichage des données passées via l' intent
@@ -89,7 +88,8 @@ class RationDetailActivity : AppCompatActivity() {
     }
     private fun updateUI(adapter: AlimentDeRationAdapter, numberOfAnimals: Int) {
         tvNumberOfAnimals.text = numberOfAnimals.toString()
-        adapter.adjustQuantitiesAndRound(numberOfAnimals)
+
+        adapter.adjustQuantities(numberOfAnimals)
         updateTotalWeight(adapter)
     }
 

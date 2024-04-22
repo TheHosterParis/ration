@@ -28,10 +28,8 @@ class RationRepository(private val rationDao: RationDao) {
                         AlimentQuantity(
                             idAliment = aliment.idAliment,
                             alimentName = aliment.alimentName,
-                            quantity = aliment.quantity,
                             unit = aliment.unit,
                             pas = aliment.pas,
-                            quantityParRation = aliment.quantityParRation
                         )
                     }
                 )

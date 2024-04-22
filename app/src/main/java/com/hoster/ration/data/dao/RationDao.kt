@@ -41,7 +41,7 @@ interface RationDao {
     suspend fun getRationWithAliments(rationId: Long): List<RationWithAliments>
 
     @Transaction
-    @Query("SELECT rations.*, aliments.*, ration_aliment_cross_ref.quantity, ration_aliment_cross_ref.quantityParRation FROM rations JOIN ration_aliment_cross_ref ON rations.idRation = ration_aliment_cross_ref.idRation JOIN aliments ON aliments.idAliment = ration_aliment_cross_ref.idAliment WHERE rations.idRation = :rationId")
+    @Query("SELECT rations.*, aliments.*, ration_aliment_cross_ref.quantityParRation FROM rations JOIN ration_aliment_cross_ref ON rations.idRation = ration_aliment_cross_ref.idRation JOIN aliments ON aliments.idAliment = ration_aliment_cross_ref.idAliment WHERE rations.idRation = :rationId")
     fun getRationDetailWithAliments(rationId: Long): List<RationDetail>
     // Ajoutez d'autres méthodes de requête selon les besoins
 
@@ -56,9 +56,8 @@ interface RationDao {
             a.name AS animalName,
             al.idAliment,
             al.alimentName,
-            rac.quantity,
             rac.unit,
-            rac.pas,
+            al.step AS pas,
             rac.quantityParRation,
             p.idPreparation AS preparationId
         FROM 
